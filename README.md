@@ -17,12 +17,11 @@ chains of DSO dependencies).  Multiple symbols with the same name will
 cause ambiguity over which symbol should be used where.  Calling the
 wrong symbol could lead to incorrect behavior.
 
-One solution to this problem is to use ELF symbol versioning [1] to
-stamp each symbol with a version that indicates which library provides
-it.  When an application is linked with -lOpenGL or -lGLESv2, the
-symbol's version will be recorded in the application.  At run time,
-only the symbol with the correct version will be used to resolve the
-symbol in the application.
+One solution to this problem is to use ELF symbol versioning to stamp each
+symbol with a version that indicates which library provides it.  When an
+application is linked with -lOpenGL or -lGLESv2, the symbol's version
+will be recorded in the application.  At run time, only the symbol with
+the correct version will be used to resolve the symbol in the application.
 
 This solution is not entirely satisfying: the version of the symbol
 is defined at _link_ time, so each linked object can only reference
@@ -38,8 +37,7 @@ To see this in action, run:
 
     make symbol-version-tests && sh ./run-symbol-version-tests.sh
 
-[1] See Maintaining APIs and ABIs in Ulrich Drepper's DSO Howto:
-www.akkadia.org/drepper/dsohowto.pdf
+See Maintaining APIs and ABIs in Ulrich Drepper's DSO Howto: www.akkadia.org/drepper/dsohowto.pdf
 
 Problem 2: one DSO as a "pass-thru" to another DSO
 --------------
