@@ -1,0 +1,5 @@
+libOpenGL.so.1 {
+    global: glFoo; glBar; glBaz;
+    local: *;
+};
+

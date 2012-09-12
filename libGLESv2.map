@@ -1,0 +1,5 @@
+libGLESv2.so.1 {
+    global: glFoo; glBar; glBaz;
+    local: *;
+};
+
