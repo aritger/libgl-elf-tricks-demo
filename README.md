@@ -35,6 +35,7 @@ with versioned symbols.  Then it shows how an application would link
 against or the other or both and always get the intended symbol.
 
 To see this in action, run:
+
     make symbol-version-tests && sh ./run-symbol-version-tests.sh
 
 [1] See Maintaining APIs and ABIs in Ulrich Drepper's DSO Howto:
@@ -51,9 +52,10 @@ ELF filters can be used such that symbols advertised by libGL.so.1 are
 actually satisfied by libOpenGL.so.1.
 
 To see this in action, run:
+
     make filter-tests && sh ./run-filter-tests.sh
 
 See:
-http://docs.oracle.com/cd/E23824_01/html/819-0690/chapter4-4.html
-GNU ld(1)'s '--filter' command line option
+* http://docs.oracle.com/cd/E23824_01/html/819-0690/chapter4-4.html
+* GNU ld(1)'s '--filter' command line option
 
