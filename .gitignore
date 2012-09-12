@@ -1,0 +1,14 @@
+libGL.so
+libGL.so.1
+libGLESv2.so
+libGLESv2.so.1
+libOpenGL.so
+libOpenGL.so.1
+libtest-glesv2.so
+libtest-glesv2.so.1
+libtest-opengl.so
+libtest-opengl.so.1
+test-both
+test-gl
+test-glesv2
+test-opengl
