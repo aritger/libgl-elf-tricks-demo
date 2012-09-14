@@ -2,6 +2,12 @@
 
 set -e
 
+if [ `uname` = "SunOS" ]; then
+    READELF=elfdump
+else
+    READELF=readelf
+fi
+
 echo
 echo "=============================================================="
 echo "Demonstration of using ELF symbol versioning to select symbols"
@@ -15,24 +21,24 @@ echo "=============================================================="
 echo
 
 echo "The symbol 'glFoo' in libOpenGL.so.1 has a version stamp:"
-echo "\`readelf -s libOpenGL.so.1 | grep glFoo\`:"
-readelf -s libOpenGL.so.1 | grep glFoo
+echo "\`${READELF} -s libOpenGL.so.1 | grep glFoo\`:"
+${READELF} -s libOpenGL.so.1 | grep glFoo
 echo
 
 echo "The symbol 'glFoo' in libGLESv2.so.1 has a version stamp:"
-echo "\`readelf -s libGLESv2.so.1 | grep glFoo\`:"
-readelf -s libGLESv2.so.1 | grep glFoo
+echo "\`${READELF} -s libGLESv2.so.1 | grep glFoo\`:"
+${READELF} -s libGLESv2.so.1 | grep glFoo
 echo
 
 echo "The undefined references to 'glFoo' are versioned:"
-echo "\`readelf -s test-opengl | grep glFoo\`:"
-readelf -s test-opengl | grep glFoo
-echo "\`readelf -s test-glesv2 | grep glFoo\`:"
-readelf -s test-glesv2 | grep glFoo
-echo "\`readelf -s libtest-opengl.so.1 | grep glFoo\`:"
-readelf -s libtest-opengl.so.1 | grep glFoo
-echo "\`readelf -s libtest-glesv2.so.1 | grep glFoo\`:"
-readelf -s libtest-glesv2.so.1 | grep glFoo
+echo "\`${READELF} -s test-opengl | grep glFoo\`:"
+${READELF} -s test-opengl | grep glFoo
+echo "\`${READELF} -s test-glesv2 | grep glFoo\`:"
+${READELF} -s test-glesv2 | grep glFoo
+echo "\`${READELF} -s libtest-opengl.so.1 | grep glFoo\`:"
+${READELF} -s libtest-opengl.so.1 | grep glFoo
+echo "\`${READELF} -s libtest-glesv2.so.1 | grep glFoo\`:"
+${READELF} -s libtest-glesv2.so.1 | grep glFoo
 echo
 
 echo "Testing an application that links against libOpenGL.so.1:"

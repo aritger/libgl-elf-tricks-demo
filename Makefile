@@ -4,6 +4,14 @@
 
 all: symbol-version-tests filter-tests
 
+UNAME := $(shell uname)
+
+ifeq ($(UNAME),SunOS)
+  MAPFILE_OPTION=-M
+else
+  MAPFILE_OPTION=--version-script=
+endif
+
 .PHONY: all symbol-version-tests filter-tests
 symbol-version-tests: test-opengl test-glesv2 test-both
 filter-tests: test-gl
@@ -12,11 +20,11 @@ filter-tests: test-gl
 # the version for each symbol
 
 libOpenGL.so.1: glapi.c libOpenGL.map
-	gcc -shared -o $@ -Wl,-soname=$@ $< -fPIC -Wl,--version-script=libOpenGL.map -DAPI=\"OpenGL\"
+	gcc -shared -o $@ -Wl,-soname=$@ $< -fPIC -Wl,$(MAPFILE_OPTION)libOpenGL.map -DAPI=\"OpenGL\"
 	strip $@
 
 libGLESv2.so.1: glapi.c libGLESv2.map
-	gcc -shared -o $@ -Wl,-soname=$@ $< -fPIC -Wl,--version-script=libGLESv2.map -DAPI=\"GLESv2\"
+	gcc -shared -o $@ -Wl,-soname=$@ $< -fPIC -Wl,$(MAPFILE_OPTION)libGLESv2.map -DAPI=\"GLESv2\"
 	strip $@
 
 
