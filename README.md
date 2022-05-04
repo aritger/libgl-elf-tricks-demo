@@ -5,6 +5,8 @@ There are several ELF-level problems mentioned in my new Linux OpenGL
 ABI straw-man proposal.  The files here demonstrate some ways those
 problems could be solved.
 
+test
+
 Problem 1: Symbol Collisions
 --------------
 
